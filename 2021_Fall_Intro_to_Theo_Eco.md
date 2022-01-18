@@ -165,12 +165,12 @@ Below are the textbook references:
 <!--                "Holt, 1977", -->
 <!--                "Anderson & May, 1979", -->
 <!--                " $~~~~~~~~~~~~$ \\- ", -->
-<!--                " $~~~~~~~~~~~~$ \\- ")   -->
+<!--                " $~~~~~~~~~~~~$ \\- ") -->
 
 <!-- ) -->
 
-<!-- kbl(syllabus, align = "cccl", escape = F) %>%   -->
-<!--   kable_paper(full_width = T,  -->
+<!-- kbl(syllabus, align = "cccl", escape = F) %>% -->
+<!--   kable_paper(full_width = T, -->
 <!--               html_font = "Arial", -->
 <!--               font_size = 17) %>% -->
 <!--   kable_styling(bootstrap_options = c("bordered")) %>% -->

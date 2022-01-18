@@ -1,0 +1,201 @@
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(message = F, 
+                      error = F, 
+                      warning = F)
+
+```
+
+# Week 10 {-} 
+<div style = "font-size: 28pt"> **_Modern coexistence theory & Lotka-Volterra model of predator-prey interactions (1)_**</div>
+
+## Lecture in a nutshell {-}
+
+* **Modern coexistence theory**
+    1. From [mutual invasion analysis](https://genchanghsu.github.io/2021_Fall_Introduction_to_Theoretical_Ecology/week-8.html#lecture-in-a-nutshell-7) for coexistence: $\frac{\alpha_{AB}}{\alpha_{BB}}<\frac{r_{A}}{r_{B}}<\frac{\alpha_{AA}}{\alpha_{BA}}$ 
+    2. Multiplying all terms by $\sqrt{\frac{\alpha_{BB}\alpha_{BA}}{\alpha_{AA}\alpha_{AB}}}$: 
+    $\sqrt{\frac{\alpha_{AB}\alpha_{BA}}{\alpha_{AA}\alpha_{BB}}}<\frac{r_{A}}{r_{B}}\sqrt{\frac{\alpha_{BB}\alpha_{BA}}{\alpha_{AA}\alpha_{AB}}}<\sqrt{\frac{\alpha_{AA}\alpha_{BB}}{\alpha_{AB}\alpha_{BA}}}$
+        * $\sqrt{\frac{\alpha_{AB}\alpha_{BA}}{\alpha_{AA}\alpha_{BB}}}$: niche overlap ($\rho$) (niche difference: $1-\rho$)
+        * $\frac{r_{A}}{r_{B}}$: demographic ratio
+        * $\sqrt{\frac{\alpha_{BB}\alpha_{BA}}{\alpha_{AA}\alpha_{AB}}}$: sensitivity to competition
+        * $\frac{r_{A}}{r_{B}}\sqrt{\frac{\alpha_{BB}\alpha_{BA}}{\alpha_{AA}\alpha_{AB}}}$: fitness ratio/competitive hierarchy ($\frac{K_{A}}{K_{B}}$)
+    3. Coexistence: fitness ratio $\frac{K_{A}}{K_{B}}$ should be bounded between $\rho$ and $\frac{1}{\rho}$ 
+    4. Competition outcomes:
+    
+```{r, fig.width = 5, fig.height = 5, out.width = "70%", fig.align = "center", echo = F}
+library(tidyverse)
+
+cuve_df <- data.frame(x = seq(-1, 1, 0.01)) %>%
+  mutate(rho1 = -x+1,
+         rho2 = ifelse(x <= 0.5, 1/(1-x), 2.01),
+         side = case_when(rho1 > rho2 ~ "left",
+                          rho1 < rho2 ~ "right"))
+
+ggplot() + 
+  geom_line(data = cuve_df, aes(x = x, y = rho1), size = 1.2) +
+  geom_line(data = filter(cuve_df, rho2 < 2.01), aes(x = x, y = rho2), size = 1.2) + 
+  geom_ribbon(data = filter(cuve_df, side == "left"), aes(x = x, ymin = rho2, ymax = rho1), fill = "grey70") + 
+  geom_ribbon(data = filter(cuve_df, side == "right"), aes(x = x, ymin = rho1, ymax = rho2), fill = "grey90") +
+  geom_vline(xintercept = 0, linetype = "dashed", size = 1, color = "grey50") + 
+  geom_hline(yintercept = 1, linetype = "dashed", size = 1, color = "grey50") + 
+  scale_x_continuous(breaks = c(-1, 0, 1), expand = c(0, 0)) + 
+  scale_y_continuous(breaks = c(0, 1, 2), expand = c(0, 0)) + 
+  coord_cartesian(xlim = c(-1, 1), ylim = c(0, 2.01), clip = "off") + 
+  labs(x = expression(Niche~difference~(1-italic(rho))),
+       y = expression(Fitness~ratio~(K[A]/K[B]))) + 
+  theme_classic(base_size = 14) +
+  theme(panel.border = element_rect(color = "black", fill = "transparent"),
+         plot.margin = margin(1.5, 1.5, 0.5, 0.5, "cm")) + 
+  annotate(geom = "text", x = 0, y = 1.7, label = "Species A wins", fontface = "bold.italic") +
+  annotate(geom = "text", x = 0, y = 0.4, label = "Species B wins", fontface = "bold.italic") + 
+  annotate(geom = "text", x = -0.5, y = 1.07, label = "Priority effect", fontface = "bold.italic") +
+  annotate(geom = "text", x = 0.55, y = 1.07, label = "Stable coexistence", fontface = "bold.italic") + 
+  annotate(geom = "segment", x = 0.1, y = 2.2, xend = 0.9, yend = 2.2,
+           arrow = arrow(length = unit(0.15, "in"),
+                         type = "open"),
+           lineend = "round", 
+           linejoin = "mitre",
+           size = 1.5) + 
+    annotate(geom = "text", x = 0.5, y = 2.3, label = "Intraspecific > Interspecific", size = 3) +
+  annotate(geom = "segment", x = -0.1, y = 2.2, xend = -0.9, yend = 2.2,
+           arrow = arrow(length = unit(0.15, "in"),
+                         type = "open"),
+           lineend = "round", 
+           linejoin = "mitre",
+           size = 1.5) + 
+      annotate(geom = "text", x = -0.5, y = 2.3, label = "Intraspecific < Interspecific", size = 3) +
+  annotate(geom = "segment", x = 1.2, y = 1.1, xend = 1.2, yend = 1.9,
+           arrow = arrow(length = unit(0.15, "in"),
+                         type = "open"),
+           lineend = "round", 
+           linejoin = "mitre",
+           size = 1.5) + 
+  annotate(geom = "text", x = 1.3, y = 1.5, label = "Species A more competitive", size = 3, angle = -90) + 
+  annotate(geom = "segment", x = 1.2, y = 0.9, xend = 1.2, yend = 0.1,
+           arrow = arrow(length = unit(0.15, "in"),
+                         type = "open"),
+           lineend = "round", 
+           linejoin = "mitre",
+           size = 1.5) + 
+  annotate(geom = "text", x = 1.3, y = 0.5, label = "Species B more competitive", size = 3, angle = -90) 
+
+```
+
+<div style="height:1px ;"><br></div>
+
+* **Lotka-Volterra model of predator-prey interactions**
+    1. Model derivation:
+<div style="margin-left: 30%;">$\begin{align}\frac {dN}{dt} = g(N)-f(N,P)\end{align}\\$</div>
+<div style="margin-left: 30%; margin-bottom: 5px;">$\begin{align}\frac {dP}{dt} = ef(N,P)-d(P)\end{align}$</div>
+        * $g(N)$: prey growth
+        * $f(N,P)$: prey consumed by predator
+        * $ef(N,P)$: prey conversion into predator
+        * $d(P)$: predator mortality
+    2. Functional response $f(N,P)$:
+        * Type I: $f(N,P) = aN$
+        * Type II: $f(N,P) = \frac{aN}{1+ahN}$ (_h_ is the handling time) or $\frac{uN}{K_{m}+N}$
+        * Type III: $f(N,P) = \frac{aN^{2}}{1+ahN^{2}}$ or $\frac{uN^{2}}{K_{m}+N^{2}}$
+    3. Various model forms:
+        * Exponential growth of prey + Type I functional response
+        * Logistic growth of prey + Type I functional response
+        * Exponential growth of prey + Type II functional response
+        * Logistic growth of prey + Type II functional response
+
+<div style="height:1px ;"><br></div>
+* **Model 1. Exponential growth of prey + Type I functional response**
+    1. Model equations:
+<div style="margin-left: 30%;">$\begin{align}\frac {dN}{dt} = rN-aNP\end{align}\\$</div>
+<div style="margin-left: 30%; margin-bottom: 5px;">$\begin{align}\frac {dP}{dt} = eaNP-dP\end{align}$</div>
+    2. The equilibrium points $(N^{*}, P^{*})$:
+        * $E_{0} = (0, 0)$
+        * $E_{NP} = (\frac{d}{ea}, \frac{r}{a})$
+    3. Local stability analysis:
+        1. $E_{0}$
+            * $J_{E_{0}} = \begin{vmatrix}r & 0 \\ 0 & -d\end{vmatrix}$
+            * $\lambda's = r$ and $-d$ (one positive and one negative)
+            * Unstable
+        2. $E_{NP}$
+        * $J_{E_{NP}} = \begin{vmatrix}0 &  -a\frac{d}{ea} \\ ea\frac{r}{a} & 0\end{vmatrix}$
+        * $\lambda's = \sqrt{rd}*i$ 
+        * Real part is zero (pure imaginary number): the equilibrium is a center; sensitive to non-linear terms/initial conditions
+        * Lyapunov function (global stability analysis of the equilibrium) is useful for predicting the system dynamics in the situations where all real parts of the eigenvalues are zero 
+        * In this case, the dynamics are neutral cycles
+
+<div style="height:1px ;"><br></div>    
+<br>
+
+## Lab demonstration {-}
+
+In this lab, we are going to analyze the classic Lotka-Volterra predator-prey model:
+
+<div style="margin-left: 30%;">$\begin{align}\frac {dN}{dt} = rN-aNP\end{align}\\$</div>
+<div style="margin-left: 30%; margin-bottom: 5px;">$\begin{align}\frac {dP}{dt} = eaNP-dP\end{align}$</div>
+
+Please simulate the model using the following parameter set (_N_ = 10, _P_ = 2, _r_ = 1.0, _a_ = 0.1, _e_ = 0.8, _d_ = 0.5) and plot the population trajectories of predator and prey over time. Also show their population dynamics in the state-space diagram.
+
+What will happen if you add a perturbation to the system (i.e., change the initial conditions)? Try out different values of _N_ and _P_ and visualize the differences in the state-space diagram.
+
+```{r, fig.width = 5, fig.height = 3.5, out.width = "70%", fig.align = "center"}
+library(tidyverse)
+library(deSolve)
+
+### Model specification
+LV_predation_model <- function(times, state, parms) {
+  with(as.list(c(state, parms)), {
+    dN_dt = r*N - a*N*P
+    dP_dt = e*a*N*P - d*P
+    return(list(c(dN_dt, dP_dt)))  
+  })
+}
+
+### Model parameters
+times <- seq(0, 1000, by = 0.005)
+state <- c(N = 10, P = 2)
+parms <- c(r = 1.0, a = 0.1, e = 0.8, d = 0.5)
+
+### Model application
+pop_size <- ode(func = LV_predation_model, times = times, y = state, parms = parms)
+
+### Visualize the population dynamics
+# (1) population trajectories
+pop_size %>%
+  as.data.frame() %>%
+  pivot_longer(cols = -time, names_to = "species", values_to = "N") %>%
+  ggplot(aes(x = time, y = N, color = species)) + 
+  geom_line(size = 1.5) +
+  theme_classic(base_size = 12) +
+  labs(x = "Time", y = "Population size") +
+  scale_x_continuous(limits = c(0, 100.5), expand = c(0, 0)) +
+  scale_y_continuous(limits = c(0, max(pop_size[, -1])*1.2), expand = c(0, 0)) +
+  scale_color_brewer(name = NULL, palette = "Set1", labels = c("Prey", "Predator"), direction = -1)
+
+# (2) state-space diagram
+pop_size %>%
+  as.data.frame() %>%
+  ggplot(aes(x = N, y = P)) + 
+  geom_path() + 
+  theme_classic(base_size = 12) +
+  labs(x = "Prey", y = "Predator")
+
+```
+<br>
+
+<style>
+iframe {border: 0;}
+</style>
+
+Here is a shiny app for the Lotka-Volterra predator-prey model. Feel free to play around with different parameter inputs and see how the system dynamics change accordingly.
+
+```{r, out.width = "800px", echo = F}
+knitr::include_app("https://genchanghsu0115.shinyapps.io/LV_predation_mod_shinyapp/", height = "700px")
+```
+
+## Additional readings {-}
+
+[Signs of stabilisation and stable coexistence](./Additional readings/Broekman_et_al_2019_Eco_Let.pdf){target="_blank"}
+<br>
+
+## Assignments {-}
+
+[Stabilizing Lotka-Volterra Predator-Prey Model](./Assignments/Week10_LV Predation Model.pdf){target="_blank"}
+
+[Suggested Solutions](./Assignments/Week10_LV Predation Model_with_Solutions.pdf){target="_blank"}

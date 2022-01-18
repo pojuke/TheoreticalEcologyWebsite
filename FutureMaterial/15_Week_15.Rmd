@@ -1,0 +1,184 @@
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(message = F, 
+                      error = F, 
+                      warning = F)
+
+```
+
+# Week 15 {-} 
+<div style = "font-size: 28pt"> **_Course review & open discussion_**</div>
+
+## Lecture review {-}
+
+[Lecture recap](./Lecture handouts/Week15_Final_Recap.pdf){target="_blank"}
+
+## Lab review {-}
+
+Throughout the lab sections this semester, we have been focusing largely on solving differential equations using the package `deSolve` and visualize the system dynamics with ggplots. We have also used for loops to model discrete-time population growth. Lastly, we have analyzed age-structured models using matrix multiplication as well as eigenanalysis to estimate the asymptotic growth rate and stable age distribution.    
+
+Below is a brief summary of the key points regarding these modeling techniques:
+
+### 1. deSolve and numerical integration {-}
+
+There are two main steps for solving ode's with `deSolve`:
+
+<span id = "aaa" style="display: block; margin-top: -10px; margin-left: 90px">Model specification: Create a function specifying your model structure, that is, a set of differential equations</span>
+
+<span id = "bbb" style="display: block; margin-top: -10px; margin-left: 90px">Model application: Set the time steps, initial conditions, and model parameters and run the `ode()` function to solve the system of differential equations</span>
+
+<style>
+
+p span#aaa:before { 
+  content: "Step 1. "; 
+  display: inline-block;
+  margin-left: -3.5em;
+  margin-right: 0.3em;
+}
+
+p span#bbb:before { 
+  content: "Step 2. "; 
+  display: inline-block;
+  margin-left: -3.5em;
+  margin-right: 0.3em;
+}
+
+d-article table.lightable-paper {
+  margin-bottom: 0px; 
+}
+
+</style>
+
+Here is an ode example using the Lotka-Volterra competition model: 
+
+```{r}
+library(deSolve)
+
+### (1) Model specification
+LV_competition_model <- function(times, state, parms) {
+  with(as.list(c(state, parms)), {
+    
+    # system of differential equations
+    dN1_dt = N1*(r1-a11*N1-a12*N2)  
+    dN2_dt = N2*(r2-a22*N2-a21*N1)
+    
+    # return the integration results (the objects need to be in the same order specified above)
+    return(list(c(dN1_dt, dN2_dt)))
+    
+  })
+}
+  
+### (2) Model application
+# parameter setup
+times <- seq(0, 100, by = 0.1)
+state <- c(N1 = 10, N2 = 10)
+parms <- c(r1 = 1.4, r2 = 1.2, a11 = 1/200, a21 = 1/400, a22 = 1/200, a12 = 1/300)
+
+# run the ode solver
+pop_size <- ode(func = LV_competition_model, times = times, y = state, parms = parms)
+
+### Take a look at the results
+head(pop_size)
+
+```
+
+### 2. for loops {-}
+
+The key to using for loops is to identify what you would like to iterate over (e.g., time) and how many iterations there are (e.g., 100 iterations). Also, we will create an object beforehand to store the results of each for loop iteration.
+
+Here is a for loop example using the discrete logistic growth model:
+
+```{r}
+library(tidyverse)
+
+### The discrete logistic growth equation and parameter setup
+log_fun <- function(r, N, K){N + r*N*(1-N/K)}  
+
+r <- 1.8
+K <- 500
+N0 <- 10
+time <- 100
+
+### Create an empty object to store the for loop results
+pop_size <- numeric(time)
+pop_size[1] <- N0
+
+### Run the for loop 
+for (i in 2:time) {pop_size[i] <- log_fun(r = r, N = pop_size[i - 1], K = K)}
+
+### Organize the for loop results
+pop_data <- pop_size %>% 
+  as.data.frame() %>% 
+  rename(., pop_size = `.`) %>%
+  mutate(time = 0:(time-1)) %>%
+  relocate(time)
+
+head(pop_data)
+
+```
+
+### 3. Matrix multiplication and eigenanalysis {-}
+
+In R, we use `%*%` (not `*`!) to do matrix multiplication. Make sure the two matrices are **compatible**: the number of columns in the first matrix should be the same as the number of rows in the second matrix. If necessary, use `t()` to transpose the matrix so that the two matrices are compatible for multiplication.
+
+To perform eigenanalysis on a square matrix, simply pass the matrix into the function `eigen()` and store the results to an object. You can then access the eigenvalues and eigenvectors via `object_name$values` and `object_name$vectors`.
+
+Here is a Leslie matrix example:
+
+```{r}
+library(tidyverse)
+
+### Leslie matrix and initial age classes
+leslie_mtrx <- matrix(data = c(0, 1, 5,
+                               0.5, 0, 0,
+                               0, 0.3, 0),
+                      nrow = 3, 
+                      ncol = 3,
+                      byrow = T)
+
+initial_age <- c(10, 0, 0)
+
+### for loop and matrix multiplication
+time <- 50
+pop_size <- data.frame(Age1 = numeric(time+1),
+                       Age2 = numeric(time+1),
+                       Age3 = numeric(time+1))
+pop_size[1, ] <- initial_age
+
+for (i in 1:time) {
+  # use "%*%" for matrix multiplication
+  # "leslie_mtrx" (3-by-3) is compatible with "as.matrix(t(pop_size[i, ]))" (3-by-1)
+  pop_size[i+1, ] <- leslie_mtrx %*% as.matrix(t(pop_size[i, ]))
+}
+
+### Organize the for loop results 
+pop_size <- pop_size %>% 
+  round() %>%
+  mutate(Total_N = rowSums(.), 
+         Time = 0:time) %>%
+  relocate(Time)
+
+head(round(pop_size)) 
+
+### Eigenanalysis of the Leslie matrix
+eigen_out <- eigen(leslie_mtrx)
+
+# dominant eigenvalue
+eigen_out$values[1] 
+
+# corresponding eigenvector
+eigen_out$vectors[, 1]
+
+```
+
+<br>
+
+## Additional readings {-}
+
+No additional readings this week.
+<br>
+
+## Assignments {-}
+
+No assignments this week.
+
+
