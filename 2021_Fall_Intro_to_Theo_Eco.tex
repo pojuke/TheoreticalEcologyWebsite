@@ -1,0 +1,263 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{book}
+\title{Introduction to Theoretical Ecology}
+\author{Instructor: Po-Ju Ke \(~~~~~\) Teaching Assistant: Gen-Chang Hsu}
+\date{2021 Fall at National Taiwan Univeristy \includegraphics{./bifurcation.gif}}
+
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Introduction to Theoretical Ecology},
+  pdfauthor={Instructor: Po-Ju Ke \textasciitilde\textasciitilde\textasciitilde\textasciitilde\textasciitilde{} Teaching Assistant: Gen-Chang Hsu},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{booktabs}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage[]{natbib}
+\bibliographystyle{apalike}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\hypertarget{course-information}{%
+\chapter*{Course Information}\label{course-information}}
+\addcontentsline{toc}{chapter}{Course Information}
+
+\textbf{IMPORTANT ANOUNCEMENT!!!}
+
+The first three weeks of this course will be online. We will host the two modules of this course (i.e., 2-hr lecture and 1-hr practice) on different platforms. We will use Google Meet for the lecture section \href{https://meet.google.com/nzd-cdjp-kbt}{(link here)}. To mimic an environment where we can provide one-on-one coding advice, we will use Gather Town for the hands-on practice section \href{https://gather.town/app/osrqFSf0a7q0I6uo/TheoreticalEcology}{(link here)}. Please login in advance to make sure it is working; learn how to use Gather Town \href{https://www.youtube.com/watch?v=89at5EvCEvk}{here}.
+
+For those who wish to enroll manually, please join the first lecture and stay online afterward. Since we have moved to a larger classroom due to COVID-19 regulation, we can accommodate more students. We have asked students to introduce themselves (e.g., research interest and familiarity with R; 1-2 minutes) during the first time we meet online, so please also be prepared if you wish to enroll.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Description}
+
+The development of theory plays an important role in advancing ecology as a scientific field. This three-unit course is for students at the graduate or advanced undergraduate level. The course will cover classic theoretical topics in ecology, starting from single-species dynamics and gradually build up to multi-species models. The course will primarily focus on population and community ecology, but we will also briefly discuss models in epidemiology and ecosystem ecology. Emphasis will be on theoretical concepts and corresponding mathematical approaches.
+
+This course is designed as a two-hour lecture followed by a one-hour hands-on practice module. In the lecture, we will analyze dynamical models and derive general theories in ecology. In the hands-on practice section, we will use a combination of analytical problem sets, interactive applications, and numerical simulations to gain a general understanding of the dynamics and behavior of different models.
+
+\textbf{Objectives}
+
+By the end of the course, students are expected to be familiar with the basic building blocks of ecological models and would be able to formulate and analyze simple models of their own. The hands-on practice component should allow students to link their ecological intuition with the underlying mathematical model, helping them to better understand the primary literature of theoretical ecology.
+
+\textbf{Requirements}
+
+Students are expected to have a basic understanding of \textbf{Calculus} (e.g., freshman introductory course) and \textbf{Ecology}.
+
+\textbf{Format}
+
+Tuesday 1:20 pm \textasciitilde{} 4:20 pm at Classroom 3C, Life Science Building
+
+\begin{itemize}
+\tightlist
+\item
+  Lecture (two hours): selected topics of ecological theories and models (blackboard writing)
+\item
+  Lab (one hour): hands-on practice in programming and simulation (using R) + discussion
+\end{itemize}
+
+\textbf{Grading}
+
+The final grade consists of:
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\tightlist
+\item
+  Assignment problem sets (60\%)
+\item
+  Midterm exam (15\%)
+\item
+  Final exam (15\%)
+\item
+  Course participation (10\%)
+\end{enumerate}
+
+\textbf{Course materials}
+
+We will be using a combination of textbooks and literature articles on theoretical ecology in this course. Textbook chapters and additional reading materials will be provided (see \textbf{Syllabus} for more details).
+
+Below are the textbook references:
+
+\begin{itemize}
+\tightlist
+\item
+  Case, Ted J. \emph{An illustrated guide to theoretical ecology}. Oxford University Press, 2000.
+\item
+  Gotelli, Nicholas J. \emph{A primer of ecology 4\textsuperscript{th} edition}. Sinauer Associates, 2008.
+\item
+  Pastor, John. \emph{Mathematical ecology of populations and ecosystems}. John Wiley \& Sons, 2011.
+\item
+  Otto, Sarah P. and Troy Day. \emph{A biologist's guide to mathematical modeling in ecology and evolution}. Princeton University Press, 2011.
+\end{itemize}
+
+\textbf{Contacts}
+
+\textbf{Instructor}: Po-Ju Ke
+
+\begin{itemize}
+\tightlist
+\item
+  Office: Life Science Building R635
+\item
+  Email: \href{mailto:pojuke@ntu.edu.tw}{\nolinkurl{pojuke@ntu.edu.tw}}
+\item
+  Office hours: by appointment
+\end{itemize}
+
+\textbf{Teaching assistant}: Gen-Chang Hsu
+
+\begin{itemize}
+\tightlist
+\item
+  Email: \href{mailto:b04b01065@ntu.edu.tw}{\nolinkurl{b04b01065@ntu.edu.tw}}
+\item
+  Office hours: by appointment
+\end{itemize}
+
+\hypertarget{syllabus}{%
+\chapter*{Syllabus}\label{syllabus}}
+\addcontentsline{toc}{chapter}{Syllabus}
+
+\hypertarget{week-1}{%
+\chapter*{Week 1}\label{week-1}}
+\addcontentsline{toc}{chapter}{Week 1}
+
+\textbf{\emph{Introduction: what is theoretical ecology?}}
+
+\hypertarget{lecture-in-a-nutshell}{%
+\section*{Lecture in a nutshell}\label{lecture-in-a-nutshell}}
+\addcontentsline{toc}{section}{Lecture in a nutshell}
+
+\href{./Lecture\%20handouts/Week1_Lecture_What_Is_Theoretical_Ecology.pdf}{Lecture handout}
+
+\begin{itemize}
+\item
+  Introduction to ecological theories and mathematical models
+\item
+  Constructing ecological models: 5 steps
+\end{itemize}
+
+{\textbf{\emph{Step 1}}. Formulate the motivating question}
+
+{\textbf{\emph{Step 2}}. Determine the basic ingredients}
+
+{\textbf{\emph{Step 3}}. Qualitatively describe the biological system}
+
+{\textbf{\emph{Step 4}}. Quantitatively describe the biological system}
+
+{\textbf{\emph{Step 5}}. Analyze the model}
+
+\begin{itemize}
+\tightlist
+\item
+  Apply ecological models in your study: 4 approaches
+\end{itemize}
+
+{\textbf{\emph{Approach 1}}. Adopt the framework}
+
+{\textbf{\emph{Approach 2}}. Test the predictions}
+
+{\textbf{\emph{Approach 3}}. Use the equations (model fitting/proxy calculation)}
+
+{\textbf{\emph{Approach 4}}. Test model assumptions}
+
+\begin{itemize}
+\tightlist
+\item
+  Some relevant math techniques: Derivatives and integrals, linear approximation and Taylor expansion
+\end{itemize}
+
+\hypertarget{lab-demonstration}{%
+\section*{Lab demonstration}\label{lab-demonstration}}
+\addcontentsline{toc}{section}{Lab demonstration}
+
+No lab demonstration this week.
+
+\hypertarget{additional-readings}{%
+\section*{Additional readings}\label{additional-readings}}
+\addcontentsline{toc}{section}{Additional readings}
+
+\href{./Additional\%20readings/Grainger_et_al_2021_AmNat.pdf}{Grainger et al.~(2021). An empiricist's guide to using ecological theory. \emph{American Naturalist}.}
+
+\hypertarget{assignments}{%
+\section*{Assignments}\label{assignments}}
+\addcontentsline{toc}{section}{Assignments}
+
+Please review the study material and make sure you understand the basic R syntax and programming fundamentals, which we will be using throughout the semester. The example dataset for the tutorial is provided below.
+
+\href{./Assignments/Week1_Basic\%20Introduction\%20to\%20R.pdf}{Basic Introduction to R}
+
+\href{./Assignments/example_dat.txt}{Example dataset}
+
+  \bibliography{book.bib,packages.bib}
+
+\end{document}
