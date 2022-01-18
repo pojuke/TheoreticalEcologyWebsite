@@ -45,6 +45,46 @@
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
@@ -328,6 +368,234 @@ Please review the study material and make sure you understand the basic R syntax
 \href{./Assignments/Week1_Basic\%20Introduction\%20to\%20R.pdf}{Basic Introduction to R}
 
 \href{./Assignments/example_dat.txt}{Example dataset}
+
+\hypertarget{week-2}{%
+\chapter*{Week 2}\label{week-2}}
+\addcontentsline{toc}{chapter}{Week 2}
+
+\textbf{\emph{Exponential population growth}}
+
+\hypertarget{lecture-in-a-nutshell-1}{%
+\section*{Lecture in a nutshell}\label{lecture-in-a-nutshell-1}}
+\addcontentsline{toc}{section}{Lecture in a nutshell}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Model derivation:}
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    Population growth rate: \(Birth - Death + Immigration - Emigration\)
+  \item
+    Per capita growth rate: \((birth - death + immigration - emigration)\times N\).
+  \end{enumerate}
+\end{itemize}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Assumptions:}
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    Closed population: \(Immigration\) = \(Emigration = 0\)
+  \item
+    All individuals are identical: no genetic/age/stage structure
+  \item
+    Continuous population growth: no time lag
+  \item
+    Per capita birth and death rates are constant: time- and density-independent
+  \end{enumerate}
+\end{itemize}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Solving the differential equation \(\frac{dN}{dt} = (b-d)N\):}
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    Use separation of variables and integrate both sides
+  \item
+    Plug in the initial condition \(N_0\) at \(t = 0\)
+  \item
+    Integration result: \(N_{(t)} = N_0e^{(b-d)t} = N_0e^{rt}\)
+  \end{enumerate}
+\end{itemize}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Related concept:}
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    Doubling time \(t_d = \frac{ln(2)}{r}\)
+  \end{enumerate}
+\end{itemize}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Average (expected) lifetime for an exponential decay function \(N_{(t)} = N_0e^{-\delta t}\):}
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    Probability density function (PDF): \(\frac{N_0e^{-\delta t} - N_0e^{-\delta (t+\Delta t)}}{N_0} \approx \delta e^{-\delta t}\) (linear approximation)
+  \item
+    Expected value: \(\int_{0}^{\infty}t\delta e^{-\delta t}dt\)
+  \item
+    Use integration by parts to evaluate the integral
+  \item
+    Integration result: \(\frac{1}{\delta}\)
+  \end{enumerate}
+\end{itemize}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Relaxation of assumption 1:}
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    Net immigration/emigration is not zero: \(\frac{dN}{dt} = rN + I_{(t)}\)
+  \item
+    Solve the equation using the general solution to first-order linear differential equations
+  \end{enumerate}
+\end{itemize}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Relaxation of assumption 4:}
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    Per capita growth rate \(r\) is not a constant but rather a function of time: \(\frac{dN}{dt} = r_{(t)}N\)
+  \item
+    An example of \(r_{(t)}\): \(r_{(t)} = \overline{r} + \frac{\sigma}{2}sin(\omega t + \phi)\)
+  \item
+    Biological interpretation of \(r_{(t)}\): seasonality, environmental fluctuations, etc.
+  \end{enumerate}
+\end{itemize}
+
+\hypertarget{lab-demonstration-1}{%
+\section*{Lab demonstration}\label{lab-demonstration-1}}
+\addcontentsline{toc}{section}{Lab demonstration}
+
+In this lab, we will be solving the differential equation for exponential population growth (Part 1) and visualize how the population sizes change over time (Part 2).
+
+\textbf{Part 1 - Numerical solution using the package ``deSolve''}
+
+Two main phases:
+
+\protect\hypertarget{aaa}{}{Model specification: specify the structure of differential equation model}
+
+\protect\hypertarget{bbb}{}{Model application: set the time steps, initial population size, model parameters (e.g., intrinsic population growth rate \emph{r}) and solve the equation}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# install.packages("deSolve")}
+\FunctionTok{library}\NormalTok{(deSolve)}
+
+\DocumentationTok{\#\#\# (1) Model specification}
+\NormalTok{exponential\_model }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(times, state, parms) \{}
+  \FunctionTok{with}\NormalTok{(}\FunctionTok{as.list}\NormalTok{(}\FunctionTok{c}\NormalTok{(state, parms)), \{}
+\NormalTok{    dN\_dt }\OtherTok{=}\NormalTok{ r}\SpecialCharTok{*}\NormalTok{N  }\CommentTok{\# exponential growth equation}
+    \FunctionTok{return}\NormalTok{(}\FunctionTok{list}\NormalTok{(}\FunctionTok{c}\NormalTok{(dN\_dt)))  }\CommentTok{\# return the results  }
+\NormalTok{  \})}
+\NormalTok{\}}
+
+\DocumentationTok{\#\#\# (2) Model application}
+\NormalTok{times }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{10}\NormalTok{, }\AttributeTok{by =} \FloatTok{0.1}\NormalTok{)  }\CommentTok{\# time steps to integrate over}
+\NormalTok{state }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\AttributeTok{N =} \DecValTok{10}\NormalTok{)  }\CommentTok{\# initial population size}
+\NormalTok{parms }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\AttributeTok{r =} \FloatTok{1.5}\NormalTok{)  }\CommentTok{\# intrinsic growth rate}
+
+\CommentTok{\# run the ode solver}
+\NormalTok{pop\_size }\OtherTok{\textless{}{-}} \FunctionTok{ode}\NormalTok{(}\AttributeTok{func =}\NormalTok{ exponential\_model, }\AttributeTok{times =}\NormalTok{ times, }\AttributeTok{y =}\NormalTok{ state, }\AttributeTok{parms =}\NormalTok{ parms)}
+
+\CommentTok{\# take a look at the results}
+\FunctionTok{head}\NormalTok{(pop\_size)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      time        N
+## [1,]  0.0 10.00000
+## [2,]  0.1 11.61834
+## [3,]  0.2 13.49860
+## [4,]  0.3 15.68313
+## [5,]  0.4 18.22120
+## [6,]  0.5 21.17002
+\end{verbatim}
+
+\textbf{Part 2. Visualize the integration results:}
+
+Linear scale
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# install.packages("tidyverse")}
+\FunctionTok{library}\NormalTok{(tidyverse)}
+
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =} \FunctionTok{as.data.frame}\NormalTok{(pop\_size), }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ time, }\AttributeTok{y =}\NormalTok{ N)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+} 
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \FunctionTok{paste0}\NormalTok{(}\StringTok{"Exponential Growth }\SpecialCharTok{\textbackslash{}n}\StringTok{ (r = "}\NormalTok{, parms[}\StringTok{"r"}\NormalTok{], }\StringTok{")"}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{theme\_classic}\NormalTok{(}\AttributeTok{base\_size =} \DecValTok{12}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FloatTok{10.5}\NormalTok{), }\AttributeTok{expand =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FunctionTok{max}\NormalTok{(}\FunctionTok{as.data.frame}\NormalTok{(pop\_size)}\SpecialCharTok{$}\NormalTok{N)}\SpecialCharTok{*}\FloatTok{1.1}\NormalTok{), }\AttributeTok{expand =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.7\linewidth]{02_Week_2_files/figure-latex/unnamed-chunk-2-1} \end{center}
+
+Log scale
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =} \FunctionTok{as.data.frame}\NormalTok{(pop\_size), }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ time, }\AttributeTok{y =}\NormalTok{ N)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+} 
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \FunctionTok{paste0}\NormalTok{(}\StringTok{"Exponential Growth }\SpecialCharTok{\textbackslash{}n}\StringTok{ (r = "}\NormalTok{, parms[}\StringTok{"r"}\NormalTok{], }\StringTok{")"}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{theme\_classic}\NormalTok{(}\AttributeTok{base\_size =} \DecValTok{12}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{)) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FloatTok{10.5}\NormalTok{), }\AttributeTok{expand =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_log10}\NormalTok{(}\AttributeTok{breaks =}\NormalTok{ scales}\SpecialCharTok{::}\FunctionTok{trans\_breaks}\NormalTok{(}\StringTok{"log10"}\NormalTok{, }\ControlFlowTok{function}\NormalTok{(x) }\DecValTok{10}\SpecialCharTok{\^{}}\NormalTok{x)(}\FunctionTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{10}\SpecialCharTok{\^{}}\DecValTok{7}\NormalTok{)),}
+                \AttributeTok{labels =}\NormalTok{ scales}\SpecialCharTok{::}\FunctionTok{trans\_format}\NormalTok{(}\StringTok{"log10"}\NormalTok{, scales}\SpecialCharTok{::}\FunctionTok{math\_format}\NormalTok{(}\DecValTok{10}\SpecialCharTok{\^{}}\NormalTok{.x)),}
+                \AttributeTok{expand =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.7\linewidth]{02_Week_2_files/figure-latex/unnamed-chunk-3-1} \end{center}
+
+\hypertarget{additional-readings-1}{%
+\section*{Additional readings}\label{additional-readings-1}}
+\addcontentsline{toc}{section}{Additional readings}
+
+\href{./Additional\%20readings/Package\%20deSolve\%20-\%20Solving\%20Initial\%20Value\%20Differential\%20Equations\%20in\%20R.pdf}{Package deSolve: Solving Initial Value Differential Equations in R}
+
+\hypertarget{assignments-1}{%
+\section*{Assignments}\label{assignments-1}}
+\addcontentsline{toc}{section}{Assignments}
+
+\href{./Assignments/Week2_Exponential\%20Growth.pdf}{Exponential Population Growth with Constant Immigration}
+
+\href{./Assignments/Week2_Exponential\%20Growth_with_Solutions.pdf}{Suggested Solutions}
 
   \bibliography{book.bib,packages.bib}
 
