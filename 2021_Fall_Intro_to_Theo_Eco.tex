@@ -73,6 +73,20 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{5}
 \usepackage{booktabs}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
@@ -186,6 +200,63 @@ Below are the textbook references:
 \hypertarget{syllabus}{%
 \chapter*{Syllabus}\label{syllabus}}
 \addcontentsline{toc}{chapter}{Syllabus}
+
+\begingroup\fontsize{17}{19}\selectfont
+
+\begin{tabu} to \linewidth {>{\centering}X>{\centering}X>{\centering}X>{\raggedright}X}
+\hline
+\begingroup\fontsize{20}{22}\selectfont \textcolor{black}{\textbf{Date}}\endgroup & \begingroup\fontsize{20}{22}\selectfont \textcolor{black}{\textbf{Lecture topic}}\endgroup & \begingroup\fontsize{20}{22}\selectfont \textcolor{black}{\textbf{Lab}}\endgroup & \begingroup\fontsize{20}{22}\selectfont \textcolor{black}{\textbf{Readings}}\endgroup\\
+\hline
+**Week 1** <span style='vertical-align:-30%'> </span>
+           <br> 28-Sept-2021 & Introduction: what is theoretical ecology? & \- & Grainger et al., 2021\\
+\hline
+**Week 2** <span style='vertical-align:-30%'> </span>
+           <br> 05-Oct-2021 & Exponential population growth & Solving exponential growth equation using "deSolve" & Visualization & Gotelli [Ch.1] <br> Case [Ch.1]\\
+\hline
+**Week 3** <span style='vertical-align:-30%'> </span>
+           <br> 12-Oct-2021 & Logistic population growth and stability analysis & Solving logistic growth equation using "deSolve" & Visualization & Gotelli [Ch.2] <br> Case [Ch.5] <br> Otto & Day [Ch.5]\\
+\hline
+**Week 4** <span style='vertical-align:-30%'> </span>
+           <br> 19-Oct-2021 & Discrete exponential and logistic models & Modeling discrete logistic growth using for loops & Visualization & May, 1976\\
+\hline
+**Week 5** <span style='vertical-align:-30%'> </span>
+           <br> 26-Oct-2021 & Age-structured models & Analyzing Leslie matrix using for loops and eigenanalysis & Gotelli [Ch.3] <br> Case[Ch.3]\\
+\hline
+**Week 6** <span style='vertical-align:-30%'> </span>
+           <br> 02-Nov-2021 & Metapopulations and patch occupancy models & Building and analyzing a model on plant-soil dynamics & Gotelli [Ch.4] <br> Case [Ch.16]\\
+\hline
+**Week 7** <span style='vertical-align:-30%'> </span>
+           <br> 09-Nov-2021 & Lotka-Volterra model of competition: graphical analysis & Visualizing state-phase diagrams of Lotka-Volterra competition model & Gotelli [Ch.5] <br> Case [Ch.14]\\
+\hline
+**Week 8** <span style='vertical-align:-30%'> </span>
+           <br> 16-Nov-2021 & Lotka-Volterra model of competition: linear stability analysis & Analyzing system dynamics of Lotka-Volterra competition model & Otto & Day [Ch.8]\\
+\hline
+**Week 9** <span style='vertical-align:-30%'> </span>
+           <br> 23-Nov-2021 & Midterm exam & \- & $~~~~~~~~~~~~$ \-\\
+\hline
+**Week 10** <span style='vertical-align:-30%'> </span>
+           <br> 30-Nov-2021 & Modern coexistence theory & Lotka-Volterra model of predator-prey interactions (1) & Analyzing Lotka-Volterra model of predator-prey interactions (basic) & Broekman et al., 2019\\
+\hline
+**Week 11** <span style='vertical-align:-30%'> </span>
+           <br> 07-Dec-2021 & Lotka-Volterra model of predator-prey interactions (2) & Analyzing Lotka-Volterra model of predator-prey interactions (variants) & Gotelli [Ch.6] <br> Case [Ch.12 & 13]\\
+\hline
+**Week 12** <span style='vertical-align:-30%'> </span>
+           <br> 14-Dec-2021 & Resource competition: R* models & Analyzing the dynamics of various consumer-resource systems & Armstrong & McGehee, 1980 <br> Tilman, 1980\\
+\hline
+**Week 13** <span style='vertical-align:-30%'> </span>
+           <br> 21-Dec-2021 & Multispecies models of competition: apparent competition & Visualizing the area of prey coexistence under apparent competition & Holt, 1977\\
+\hline
+**Week 14** <span style='vertical-align:-30%'> </span>
+           <br> 28-Dec-2021 & Disease dynamics and SIR models & Analyzing the SIR model with demography & Visualization & Anderson & May, 1979\\
+\hline
+**Week 15** <span style='vertical-align:-30%'> </span>
+           <br> 04-Jan-2022 & Course review & open discussion & \- & $~~~~~~~~~~~~$ \-\\
+\hline
+**Week 16** <span style='vertical-align:-30%'> </span>
+           <br> 11-Jan-2022 & Final exam & \- & $~~~~~~~~~~~~$ \-\\
+\hline
+\end{tabu}
+\endgroup{}
 
 \hypertarget{week-1}{%
 \chapter*{Week 1}\label{week-1}}

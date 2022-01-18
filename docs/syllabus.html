@@ -52,6 +52,8 @@
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 
@@ -103,103 +105,266 @@
             <section class="normal" id="section-">
 <div id="syllabus" class="section level1 unnumbered">
 <h1>Syllabus</h1>
-<!-- ```{r, echo = FALSE, message = F, warning = F, error = F} -->
-<!-- library(tidyverse) -->
-<!-- library(knitr) -->
-<!-- library(kableExtra) -->
-<!-- syllabus <- tibble( -->
-<!--   Date = c("**Week 1** <span style='vertical-align:-30%'> </span> -->
-<!--            <br> 28-Sept-2021", -->
-<!--            "**Week 2** <span style='vertical-align:-30%'> </span> -->
-<!--            <br> 05-Oct-2021", -->
-<!--            "**Week 3** <span style='vertical-align:-30%'> </span> -->
-<!--            <br> 12-Oct-2021", -->
-<!--            "**Week 4** <span style='vertical-align:-30%'> </span> -->
-<!--            <br> 19-Oct-2021", -->
-<!--            "**Week 5** <span style='vertical-align:-30%'> </span> -->
-<!--            <br> 26-Oct-2021", -->
-<!--            "**Week 6** <span style='vertical-align:-30%'> </span> -->
-<!--            <br> 02-Nov-2021", -->
-<!--            "**Week 7** <span style='vertical-align:-30%'> </span> -->
-<!--            <br> 09-Nov-2021", -->
-<!--            "**Week 8** <span style='vertical-align:-30%'> </span> -->
-<!--            <br> 16-Nov-2021", -->
-<!--            "**Week 9** <span style='vertical-align:-30%'> </span> -->
-<!--            <br> 23-Nov-2021", -->
-<!--            "**Week 10** <span style='vertical-align:-30%'> </span> -->
-<!--            <br> 30-Nov-2021", -->
-<!--            "**Week 11** <span style='vertical-align:-30%'> </span> -->
-<!--            <br> 07-Dec-2021", -->
-<!--            "**Week 12** <span style='vertical-align:-30%'> </span> -->
-<!--            <br> 14-Dec-2021", -->
-<!--            "**Week 13** <span style='vertical-align:-30%'> </span> -->
-<!--            <br> 21-Dec-2021", -->
-<!--            "**Week 14** <span style='vertical-align:-30%'> </span> -->
-<!--            <br> 28-Dec-2021", -->
-<!--            "**Week 15** <span style='vertical-align:-30%'> </span> -->
-<!--            <br> 04-Jan-2022", -->
-<!--            "**Week 16** <span style='vertical-align:-30%'> </span> -->
-<!--            <br> 11-Jan-2022"), -->
-<!--   `Lecture topic` = c("Introduction: what is theoretical ecology?", -->
-<!--                       "Exponential population growth", -->
-<!--                       "Logistic population growth and stability analysis", -->
-<!--                       "Discrete exponential and logistic models", -->
-<!--                       "Age-structured models", -->
-<!--                       "Metapopulations and patch occupancy models", -->
-<!--                       "Lotka-Volterra model of competition: graphical analysis", -->
-<!--                       "Lotka-Volterra model of competition: linear stability analysis", -->
-<!--                       "Midterm exam", -->
-<!--                       "Modern coexistence theory & Lotka-Volterra model of predator-prey interactions (1)", -->
-<!--                       "Lotka-Volterra model of predator-prey interactions (2)", -->
-<!--                       "Resource competition: R* models", -->
-<!--                       "Multispecies models of competition: apparent competition", -->
-<!--                       "Disease dynamics and SIR models", -->
-<!--                       "Course review & open discussion", -->
-<!--                       "Final exam"), -->
-<!--   Lab = c(" \\- ", -->
-<!--           'Solving exponential growth equation using "deSolve" & Visualization', -->
-<!--           'Solving logistic growth equation using "deSolve" & Visualization', -->
-<!--           "Modeling discrete logistic growth using for loops & Visualization", -->
-<!--           "Analyzing Leslie matrix using for loops and eigenanalysis", -->
-<!--           "Building and analyzing a model on plant-soil dynamics", -->
-<!--           "Visualizing state-phase diagrams of Lotka-Volterra competition model", -->
-<!--           "Analyzing system dynamics of Lotka-Volterra competition model", -->
-<!--           " \\- ", -->
-<!--           "Analyzing Lotka-Volterra model of predator-prey interactions (basic)", -->
-<!--           "Analyzing Lotka-Volterra model of predator-prey interactions (variants)", -->
-<!--           "Analyzing the dynamics of various consumer-resource systems", -->
-<!--           "Visualizing the area of prey coexistence under apparent competition", -->
-<!--           "Analyzing the SIR model with demography & Visualization", -->
-<!--           " \\- ", -->
-<!--           " \\- "), -->
-<!--   Readings = c("Grainger et al., 2021", -->
-<!--                "Gotelli [Ch.1] <br> Case [Ch.1]", -->
-<!--                "Gotelli [Ch.2] <br> Case [Ch.5] <br> Otto & Day [Ch.5]", -->
-<!--                "May, 1976", -->
-<!--                "Gotelli [Ch.3] <br> Case[Ch.3]", -->
-<!--                "Gotelli [Ch.4] <br> Case [Ch.16]", -->
-<!--                "Gotelli [Ch.5] <br> Case [Ch.14]", -->
-<!--                "Otto & Day [Ch.8]", -->
-<!--                " $~~~~~~~~~~~~$ \\- ", -->
-<!--                "Broekman et al., 2019", -->
-<!--                "Gotelli [Ch.6] <br> Case [Ch.12 & 13]", -->
-<!--                "Armstrong & McGehee, 1980 <br> Tilman, 1980", -->
-<!--                "Holt, 1977", -->
-<!--                "Anderson & May, 1979", -->
-<!--                " $~~~~~~~~~~~~$ \\- ", -->
-<!--                " $~~~~~~~~~~~~$ \\- ") -->
-<!-- ) -->
-<!-- kbl(syllabus, align = "cccl", escape = F) %>% -->
-<!--   kable_paper(full_width = T, -->
-<!--               html_font = "Arial", -->
-<!--               font_size = 17) %>% -->
-<!--   kable_styling(bootstrap_options = c("bordered")) %>% -->
-<!--   row_spec(0, bold = T, color = "black", font_size = 20) %>% -->
-<!--   column_spec(1, width = "10em", border_right = T) %>% -->
-<!--   column_spec(2, width = "17em") %>% -->
-<!--   column_spec(3, width = "17em") %>% -->
-<!--   column_spec(4, width = "13em") -->
-<!-- ``` -->
+<table class=" lightable-paper table table-bordered" style="font-size: 17px; font-family: Arial; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;font-weight: bold;color: black !important;font-size: 20px;">
+Date
+</th>
+<th style="text-align:center;font-weight: bold;color: black !important;font-size: 20px;">
+Lecture topic
+</th>
+<th style="text-align:center;font-weight: bold;color: black !important;font-size: 20px;">
+Lab
+</th>
+<th style="text-align:left;font-weight: bold;color: black !important;font-size: 20px;">
+Readings
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;width: 10em; border-right:1px solid;">
+<strong>Week 1</strong> <span style="vertical-align:-30%"> </span>
+<br> 28-Sept-2021
+</td>
+<td style="text-align:center;width: 17em; ">
+Introduction: what is theoretical ecology?
+</td>
+<td style="text-align:center;width: 17em; ">
+-
+</td>
+<td style="text-align:left;width: 13em; ">
+Grainger et al., 2021
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 10em; border-right:1px solid;">
+<strong>Week 2</strong> <span style="vertical-align:-30%"> </span>
+<br> 05-Oct-2021
+</td>
+<td style="text-align:center;width: 17em; ">
+Exponential population growth
+</td>
+<td style="text-align:center;width: 17em; ">
+Solving exponential growth equation using “deSolve” &amp; Visualization
+</td>
+<td style="text-align:left;width: 13em; ">
+Gotelli [Ch.1] <br> Case [Ch.1]
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 10em; border-right:1px solid;">
+<strong>Week 3</strong> <span style="vertical-align:-30%"> </span>
+<br> 12-Oct-2021
+</td>
+<td style="text-align:center;width: 17em; ">
+Logistic population growth and stability analysis
+</td>
+<td style="text-align:center;width: 17em; ">
+Solving logistic growth equation using “deSolve” &amp; Visualization
+</td>
+<td style="text-align:left;width: 13em; ">
+Gotelli [Ch.2] <br> Case [Ch.5] <br> Otto &amp; Day [Ch.5]
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 10em; border-right:1px solid;">
+<strong>Week 4</strong> <span style="vertical-align:-30%"> </span>
+<br> 19-Oct-2021
+</td>
+<td style="text-align:center;width: 17em; ">
+Discrete exponential and logistic models
+</td>
+<td style="text-align:center;width: 17em; ">
+Modeling discrete logistic growth using for loops &amp; Visualization
+</td>
+<td style="text-align:left;width: 13em; ">
+May, 1976
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 10em; border-right:1px solid;">
+<strong>Week 5</strong> <span style="vertical-align:-30%"> </span>
+<br> 26-Oct-2021
+</td>
+<td style="text-align:center;width: 17em; ">
+Age-structured models
+</td>
+<td style="text-align:center;width: 17em; ">
+Analyzing Leslie matrix using for loops and eigenanalysis
+</td>
+<td style="text-align:left;width: 13em; ">
+Gotelli [Ch.3] <br> Case[Ch.3]
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 10em; border-right:1px solid;">
+<strong>Week 6</strong> <span style="vertical-align:-30%"> </span>
+<br> 02-Nov-2021
+</td>
+<td style="text-align:center;width: 17em; ">
+Metapopulations and patch occupancy models
+</td>
+<td style="text-align:center;width: 17em; ">
+Building and analyzing a model on plant-soil dynamics
+</td>
+<td style="text-align:left;width: 13em; ">
+Gotelli [Ch.4] <br> Case [Ch.16]
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 10em; border-right:1px solid;">
+<strong>Week 7</strong> <span style="vertical-align:-30%"> </span>
+<br> 09-Nov-2021
+</td>
+<td style="text-align:center;width: 17em; ">
+Lotka-Volterra model of competition: graphical analysis
+</td>
+<td style="text-align:center;width: 17em; ">
+Visualizing state-phase diagrams of Lotka-Volterra competition model
+</td>
+<td style="text-align:left;width: 13em; ">
+Gotelli [Ch.5] <br> Case [Ch.14]
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 10em; border-right:1px solid;">
+<strong>Week 8</strong> <span style="vertical-align:-30%"> </span>
+<br> 16-Nov-2021
+</td>
+<td style="text-align:center;width: 17em; ">
+Lotka-Volterra model of competition: linear stability analysis
+</td>
+<td style="text-align:center;width: 17em; ">
+Analyzing system dynamics of Lotka-Volterra competition model
+</td>
+<td style="text-align:left;width: 13em; ">
+Otto &amp; Day [Ch.8]
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 10em; border-right:1px solid;">
+<strong>Week 9</strong> <span style="vertical-align:-30%"> </span>
+<br> 23-Nov-2021
+</td>
+<td style="text-align:center;width: 17em; ">
+Midterm exam
+</td>
+<td style="text-align:center;width: 17em; ">
+-
+</td>
+<td style="text-align:left;width: 13em; ">
+<span class="math inline">\(~~~~~~~~~~~~\)</span> -
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 10em; border-right:1px solid;">
+<strong>Week 10</strong> <span style="vertical-align:-30%"> </span>
+<br> 30-Nov-2021
+</td>
+<td style="text-align:center;width: 17em; ">
+Modern coexistence theory &amp; Lotka-Volterra model of predator-prey interactions (1)
+</td>
+<td style="text-align:center;width: 17em; ">
+Analyzing Lotka-Volterra model of predator-prey interactions (basic)
+</td>
+<td style="text-align:left;width: 13em; ">
+Broekman et al., 2019
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 10em; border-right:1px solid;">
+<strong>Week 11</strong> <span style="vertical-align:-30%"> </span>
+<br> 07-Dec-2021
+</td>
+<td style="text-align:center;width: 17em; ">
+Lotka-Volterra model of predator-prey interactions (2)
+</td>
+<td style="text-align:center;width: 17em; ">
+Analyzing Lotka-Volterra model of predator-prey interactions (variants)
+</td>
+<td style="text-align:left;width: 13em; ">
+Gotelli [Ch.6] <br> Case [Ch.12 &amp; 13]
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 10em; border-right:1px solid;">
+<strong>Week 12</strong> <span style="vertical-align:-30%"> </span>
+<br> 14-Dec-2021
+</td>
+<td style="text-align:center;width: 17em; ">
+Resource competition: R* models
+</td>
+<td style="text-align:center;width: 17em; ">
+Analyzing the dynamics of various consumer-resource systems
+</td>
+<td style="text-align:left;width: 13em; ">
+Armstrong &amp; McGehee, 1980 <br> Tilman, 1980
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 10em; border-right:1px solid;">
+<strong>Week 13</strong> <span style="vertical-align:-30%"> </span>
+<br> 21-Dec-2021
+</td>
+<td style="text-align:center;width: 17em; ">
+Multispecies models of competition: apparent competition
+</td>
+<td style="text-align:center;width: 17em; ">
+Visualizing the area of prey coexistence under apparent competition
+</td>
+<td style="text-align:left;width: 13em; ">
+Holt, 1977
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 10em; border-right:1px solid;">
+<strong>Week 14</strong> <span style="vertical-align:-30%"> </span>
+<br> 28-Dec-2021
+</td>
+<td style="text-align:center;width: 17em; ">
+Disease dynamics and SIR models
+</td>
+<td style="text-align:center;width: 17em; ">
+Analyzing the SIR model with demography &amp; Visualization
+</td>
+<td style="text-align:left;width: 13em; ">
+Anderson &amp; May, 1979
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 10em; border-right:1px solid;">
+<strong>Week 15</strong> <span style="vertical-align:-30%"> </span>
+<br> 04-Jan-2022
+</td>
+<td style="text-align:center;width: 17em; ">
+Course review &amp; open discussion
+</td>
+<td style="text-align:center;width: 17em; ">
+-
+</td>
+<td style="text-align:left;width: 13em; ">
+<span class="math inline">\(~~~~~~~~~~~~\)</span> -
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 10em; border-right:1px solid;">
+<strong>Week 16</strong> <span style="vertical-align:-30%"> </span>
+<br> 11-Jan-2022
+</td>
+<td style="text-align:center;width: 17em; ">
+Final exam
+</td>
+<td style="text-align:center;width: 17em; ">
+-
+</td>
+<td style="text-align:left;width: 13em; ">
+<span class="math inline">\(~~~~~~~~~~~~\)</span> -
+</td>
+</tr>
+</tbody>
+</table>
 
 </div>
             </section>

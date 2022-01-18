@@ -76,111 +76,62 @@ Below are the textbook references:
 
 # Syllabus {-}
 
-<!-- ```{r, echo = FALSE, message = F, warning = F, error = F} -->
-<!-- library(tidyverse) -->
-<!-- library(knitr) -->
-<!-- library(kableExtra) -->
+\begingroup\fontsize{17}{19}\selectfont
 
-<!-- syllabus <- tibble( -->
-<!--   Date = c("**Week 1** <span style='vertical-align:-30%'> </span> -->
-<!--            <br> 28-Sept-2021", -->
-<!--            "**Week 2** <span style='vertical-align:-30%'> </span> -->
-<!--            <br> 05-Oct-2021", -->
-<!--            "**Week 3** <span style='vertical-align:-30%'> </span> -->
-<!--            <br> 12-Oct-2021", -->
-<!--            "**Week 4** <span style='vertical-align:-30%'> </span> -->
-<!--            <br> 19-Oct-2021", -->
-<!--            "**Week 5** <span style='vertical-align:-30%'> </span> -->
-<!--            <br> 26-Oct-2021", -->
-<!--            "**Week 6** <span style='vertical-align:-30%'> </span> -->
-<!--            <br> 02-Nov-2021", -->
-<!--            "**Week 7** <span style='vertical-align:-30%'> </span> -->
-<!--            <br> 09-Nov-2021", -->
-<!--            "**Week 8** <span style='vertical-align:-30%'> </span> -->
-<!--            <br> 16-Nov-2021", -->
-<!--            "**Week 9** <span style='vertical-align:-30%'> </span> -->
-<!--            <br> 23-Nov-2021", -->
-<!--            "**Week 10** <span style='vertical-align:-30%'> </span> -->
-<!--            <br> 30-Nov-2021", -->
-<!--            "**Week 11** <span style='vertical-align:-30%'> </span> -->
-<!--            <br> 07-Dec-2021", -->
-<!--            "**Week 12** <span style='vertical-align:-30%'> </span> -->
-<!--            <br> 14-Dec-2021", -->
-<!--            "**Week 13** <span style='vertical-align:-30%'> </span> -->
-<!--            <br> 21-Dec-2021", -->
-<!--            "**Week 14** <span style='vertical-align:-30%'> </span> -->
-<!--            <br> 28-Dec-2021", -->
-<!--            "**Week 15** <span style='vertical-align:-30%'> </span> -->
-<!--            <br> 04-Jan-2022", -->
-<!--            "**Week 16** <span style='vertical-align:-30%'> </span> -->
-<!--            <br> 11-Jan-2022"), -->
-
-<!--   `Lecture topic` = c("Introduction: what is theoretical ecology?", -->
-<!--                       "Exponential population growth", -->
-<!--                       "Logistic population growth and stability analysis", -->
-<!--                       "Discrete exponential and logistic models", -->
-<!--                       "Age-structured models", -->
-<!--                       "Metapopulations and patch occupancy models", -->
-<!--                       "Lotka-Volterra model of competition: graphical analysis", -->
-<!--                       "Lotka-Volterra model of competition: linear stability analysis", -->
-<!--                       "Midterm exam", -->
-<!--                       "Modern coexistence theory & Lotka-Volterra model of predator-prey interactions (1)", -->
-<!--                       "Lotka-Volterra model of predator-prey interactions (2)", -->
-<!--                       "Resource competition: R* models", -->
-<!--                       "Multispecies models of competition: apparent competition", -->
-<!--                       "Disease dynamics and SIR models", -->
-<!--                       "Course review & open discussion", -->
-<!--                       "Final exam"), -->
-
-<!--   Lab = c(" \\- ", -->
-<!--           'Solving exponential growth equation using "deSolve" & Visualization', -->
-<!--           'Solving logistic growth equation using "deSolve" & Visualization', -->
-<!--           "Modeling discrete logistic growth using for loops & Visualization", -->
-<!--           "Analyzing Leslie matrix using for loops and eigenanalysis", -->
-<!--           "Building and analyzing a model on plant-soil dynamics", -->
-<!--           "Visualizing state-phase diagrams of Lotka-Volterra competition model", -->
-<!--           "Analyzing system dynamics of Lotka-Volterra competition model", -->
-<!--           " \\- ", -->
-<!--           "Analyzing Lotka-Volterra model of predator-prey interactions (basic)", -->
-<!--           "Analyzing Lotka-Volterra model of predator-prey interactions (variants)", -->
-<!--           "Analyzing the dynamics of various consumer-resource systems", -->
-<!--           "Visualizing the area of prey coexistence under apparent competition", -->
-<!--           "Analyzing the SIR model with demography & Visualization", -->
-<!--           " \\- ", -->
-<!--           " \\- "), -->
-
-
-<!--   Readings = c("Grainger et al., 2021", -->
-<!--                "Gotelli [Ch.1] <br> Case [Ch.1]", -->
-<!--                "Gotelli [Ch.2] <br> Case [Ch.5] <br> Otto & Day [Ch.5]", -->
-<!--                "May, 1976", -->
-<!--                "Gotelli [Ch.3] <br> Case[Ch.3]", -->
-<!--                "Gotelli [Ch.4] <br> Case [Ch.16]", -->
-<!--                "Gotelli [Ch.5] <br> Case [Ch.14]", -->
-<!--                "Otto & Day [Ch.8]", -->
-<!--                " $~~~~~~~~~~~~$ \\- ", -->
-<!--                "Broekman et al., 2019", -->
-<!--                "Gotelli [Ch.6] <br> Case [Ch.12 & 13]", -->
-<!--                "Armstrong & McGehee, 1980 <br> Tilman, 1980", -->
-<!--                "Holt, 1977", -->
-<!--                "Anderson & May, 1979", -->
-<!--                " $~~~~~~~~~~~~$ \\- ", -->
-<!--                " $~~~~~~~~~~~~$ \\- ") -->
-
-<!-- ) -->
-
-<!-- kbl(syllabus, align = "cccl", escape = F) %>% -->
-<!--   kable_paper(full_width = T, -->
-<!--               html_font = "Arial", -->
-<!--               font_size = 17) %>% -->
-<!--   kable_styling(bootstrap_options = c("bordered")) %>% -->
-<!--   row_spec(0, bold = T, color = "black", font_size = 20) %>% -->
-<!--   column_spec(1, width = "10em", border_right = T) %>% -->
-<!--   column_spec(2, width = "17em") %>% -->
-<!--   column_spec(3, width = "17em") %>% -->
-<!--   column_spec(4, width = "13em") -->
-
-<!-- ``` -->
+\begin{tabu} to \linewidth {>{\centering}X>{\centering}X>{\centering}X>{\raggedright}X}
+\hline
+\begingroup\fontsize{20}{22}\selectfont \textcolor{black}{\textbf{Date}}\endgroup & \begingroup\fontsize{20}{22}\selectfont \textcolor{black}{\textbf{Lecture topic}}\endgroup & \begingroup\fontsize{20}{22}\selectfont \textcolor{black}{\textbf{Lab}}\endgroup & \begingroup\fontsize{20}{22}\selectfont \textcolor{black}{\textbf{Readings}}\endgroup\\
+\hline
+**Week 1** <span style='vertical-align:-30%'> </span>
+           <br> 28-Sept-2021 & Introduction: what is theoretical ecology? & \- & Grainger et al., 2021\\
+\hline
+**Week 2** <span style='vertical-align:-30%'> </span>
+           <br> 05-Oct-2021 & Exponential population growth & Solving exponential growth equation using "deSolve" & Visualization & Gotelli [Ch.1] <br> Case [Ch.1]\\
+\hline
+**Week 3** <span style='vertical-align:-30%'> </span>
+           <br> 12-Oct-2021 & Logistic population growth and stability analysis & Solving logistic growth equation using "deSolve" & Visualization & Gotelli [Ch.2] <br> Case [Ch.5] <br> Otto & Day [Ch.5]\\
+\hline
+**Week 4** <span style='vertical-align:-30%'> </span>
+           <br> 19-Oct-2021 & Discrete exponential and logistic models & Modeling discrete logistic growth using for loops & Visualization & May, 1976\\
+\hline
+**Week 5** <span style='vertical-align:-30%'> </span>
+           <br> 26-Oct-2021 & Age-structured models & Analyzing Leslie matrix using for loops and eigenanalysis & Gotelli [Ch.3] <br> Case[Ch.3]\\
+\hline
+**Week 6** <span style='vertical-align:-30%'> </span>
+           <br> 02-Nov-2021 & Metapopulations and patch occupancy models & Building and analyzing a model on plant-soil dynamics & Gotelli [Ch.4] <br> Case [Ch.16]\\
+\hline
+**Week 7** <span style='vertical-align:-30%'> </span>
+           <br> 09-Nov-2021 & Lotka-Volterra model of competition: graphical analysis & Visualizing state-phase diagrams of Lotka-Volterra competition model & Gotelli [Ch.5] <br> Case [Ch.14]\\
+\hline
+**Week 8** <span style='vertical-align:-30%'> </span>
+           <br> 16-Nov-2021 & Lotka-Volterra model of competition: linear stability analysis & Analyzing system dynamics of Lotka-Volterra competition model & Otto & Day [Ch.8]\\
+\hline
+**Week 9** <span style='vertical-align:-30%'> </span>
+           <br> 23-Nov-2021 & Midterm exam & \- & $~~~~~~~~~~~~$ \-\\
+\hline
+**Week 10** <span style='vertical-align:-30%'> </span>
+           <br> 30-Nov-2021 & Modern coexistence theory & Lotka-Volterra model of predator-prey interactions (1) & Analyzing Lotka-Volterra model of predator-prey interactions (basic) & Broekman et al., 2019\\
+\hline
+**Week 11** <span style='vertical-align:-30%'> </span>
+           <br> 07-Dec-2021 & Lotka-Volterra model of predator-prey interactions (2) & Analyzing Lotka-Volterra model of predator-prey interactions (variants) & Gotelli [Ch.6] <br> Case [Ch.12 & 13]\\
+\hline
+**Week 12** <span style='vertical-align:-30%'> </span>
+           <br> 14-Dec-2021 & Resource competition: R* models & Analyzing the dynamics of various consumer-resource systems & Armstrong & McGehee, 1980 <br> Tilman, 1980\\
+\hline
+**Week 13** <span style='vertical-align:-30%'> </span>
+           <br> 21-Dec-2021 & Multispecies models of competition: apparent competition & Visualizing the area of prey coexistence under apparent competition & Holt, 1977\\
+\hline
+**Week 14** <span style='vertical-align:-30%'> </span>
+           <br> 28-Dec-2021 & Disease dynamics and SIR models & Analyzing the SIR model with demography & Visualization & Anderson & May, 1979\\
+\hline
+**Week 15** <span style='vertical-align:-30%'> </span>
+           <br> 04-Jan-2022 & Course review & open discussion & \- & $~~~~~~~~~~~~$ \-\\
+\hline
+**Week 16** <span style='vertical-align:-30%'> </span>
+           <br> 11-Jan-2022 & Final exam & \- & $~~~~~~~~~~~~$ \-\\
+\hline
+\end{tabu}
+\endgroup{}
 
 
 
